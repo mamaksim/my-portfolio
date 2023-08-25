@@ -1,0 +1,23 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+    <h1>WELCOM! It's myBLOG.</h1>
+
+    <h2>Was written {{ blogs.count }} blog{{blogs.count|pluralize}}. </h2>
+
+    {% for blog in blogs %}
+
+        <h2>
+            <a href= "{% url 'blog:detail' blog.id %}" >{{ blog.title }}</a>
+        </h2>
+
+
+        {{ blog.date|date:'M d Y'|upper }}
+        <p>{{ blog.description|safe|truncatechars:150 }}</p><br>
+
+    {% endfor %}
+
+    <br><a href="{% url 'home' %}">Go to portfolio</a>
+
+{% endblock %}
